@@ -33,8 +33,9 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = '1w85vOabIkvw8WlBs_u39KZmZgjZxZ-T89JKkCIS--Po';
 
 async function appendToSheet(data) {
+  const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
   const auth = new google.auth.GoogleAuth({
-    credentials: SERVICE_ACCOUNT,
+    credentials: serviceAccount,
     scopes: SCOPES,
   });
   const sheets = google.sheets({ version: 'v4', auth });

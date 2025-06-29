@@ -15,7 +15,8 @@ function allowCors(req, res, next) {
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SHEET_ID = '1w85vOabIkvw8WlBs_u39KZmZgjZxZ-T89JKkCIS--Po';
 
-async function appendToSheet(data, serviceAccount) {
+async function appendToSheet(data) {
+  const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
   const auth = new google.auth.GoogleAuth({
     credentials: serviceAccount,
     scopes: SCOPES,
