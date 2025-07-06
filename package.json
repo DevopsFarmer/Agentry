@@ -15,27 +15,16 @@
   "engines": {
     "npm": ">= 8.0.0"
   },
-  "packageManager": {
-    "name": "npm",
-    "version": "8.0.0"
-  },
-  "vercel": {
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build"
+  "build": {
+    "target": "esnext",
+    "outDir": "dist",
+    "assetsDir": "assets",
+    "rollupOptions": {
+      "input": {
+        "main": "index.html",
+        "api": "api/submit-to-mongodb.js"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/submit-to-mongodb",
-        "dest": "/api/submit-to-mongodb.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ]
+    }
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
