@@ -9,7 +9,11 @@
     "dev:backend": "node server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "install": "npm install"
+  },
+  "engines": {
+    "npm": ">= 8.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
