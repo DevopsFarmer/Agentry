@@ -35,7 +35,7 @@ const Contact = () => {
       // Google Sheets Integration
       // This will POST form data to a backend endpoint that writes to your Google Sheet using the service account key.
       // To update the integration in the future, edit the backend endpoint or update the Google Sheet ID/key.
-      const response = await fetch('/api/submit-to-google-sheets', {
+      const response = await fetch('http://localhost:3003/api/submit-to-mongodb', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, timestamp: new Date().toISOString() })

@@ -11,4 +11,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      '/submit-to-mongodb': {
+        target: 'http://localhost:3003',
+        changeOrigin: true,
+      },
+      '/submit-to-google-sheets': {
+        target: 'http://localhost:3003',
+        changeOrigin: true,
+      }
+    }
+  },
 })
