@@ -13,7 +13,7 @@ function allowCors(req, res, next) {
 }
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-const SHEET_ID = '1w85vOabIkvw8WlBs_u39KZmZgjZxZ-T89JKkCIS--Po';
+const SHEET_ID = process.env.GOOGLE_SHEET_ID;
 
 async function appendToSheet(data) {
   const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
@@ -40,10 +40,8 @@ module.exports = async (req, res) => {
       return res.status(405).json({ error: 'Method not allowed' });
     }
     try {
-      // Read service account from env (for Vercel)
-      const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
-      const { name, email, company, revenue, message } = req.body;
-      await appendToSheet([name, email, company, revenue, message], serviceAccount);
+      const { name, email, company, revenue, message, timestamp } = req.body;
+      await appendToSheet([timestamp, name, email, company, revenue, message]);
       res.status(200).json({ success: true });
     } catch (error) {
       console.error('Google Sheets API Error:', error);
