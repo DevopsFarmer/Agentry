@@ -15,16 +15,13 @@
   "engines": {
     "npm": ">= 8.0.0"
   },
-  "build": {
-    "target": "esnext",
-    "outDir": "dist",
-    "assetsDir": "assets",
-    "rollupOptions": {
-      "input": {
-        "main": "index.html",
-        "api": "api/submit-to-mongodb.js"
-      }
-    }
+  "scripts": {
+    "dev": "concurrently \"vite\" \"node server.js\"",
+    "dev:frontend": "vite",
+    "dev:backend": "node server.js",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
