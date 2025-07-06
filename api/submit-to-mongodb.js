@@ -17,10 +17,14 @@ const connectToMongoDB = async () => {
   }
 };
 
-export async function POST(event) {
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     // Parse request body
-    const { name, email, company, revenue, message } = await event.request.json();
+    const { name, email, company, revenue, message } = await req.json();
 
     // Connect to MongoDB
     const db = await connectToMongoDB();
@@ -37,23 +41,13 @@ export async function POST(event) {
     });
 
     // Return success response
-    return new Response(JSON.stringify({
+    return res.status(201).json({
       success: true,
       message: 'Form submitted successfully',
       id: result.insertedId
-    }), {
-      status: 201,
-      headers: {
-        'Content-Type': 'application/json'
-      }
     });
   } catch (error) {
     console.error('Error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return res.status(500).json({ error: error.message });
   }
 }
