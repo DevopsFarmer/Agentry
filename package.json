@@ -15,6 +15,17 @@
   "engines": {
     "npm": ">= 8.0.0"
   },
+  "build": {
+    "target": "esnext",
+    "outDir": "dist",
+    "assetsDir": "assets",
+    "rollupOptions": {
+      "input": {
+        "main": "index.html",
+        "api": "api/submit-to-mongodb.js"
+      }
+    }
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.10",

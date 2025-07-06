@@ -16,8 +16,7 @@
       "dest": "/index.html"
     }
   ],
-  "npm": {
-    "buildCommand": "npm run build",
-    "installCommand": "npm install"
+  "env": {
+    "MONGODB_URI": "@mongodb-uri"
   }
 }
